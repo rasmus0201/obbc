@@ -1,0 +1,52 @@
+<app-loader *ngIf="!loaded && !apiError" [width]="250" [height]="250"></app-loader>
+
+<div class="container-fluid">
+
+  <ng-container *ngIf="apiError; then thenTemplate; else elseTemplate"></ng-container>
+
+  <ng-template #thenTemplate>
+    <mat-card class="alert alert-danger border-0" role="alert">
+      Fejl...
+    </mat-card>
+  </ng-template>
+
+  <ng-template #elseTemplate>
+
+    <ng-container *ngIf="loaded;">
+
+      <div class="py-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="left col p-0">
+
+            <button mat-flat-button class="mw-auto mr-1" (click)="prevCalendar()" [disabled]="prevBtnDisabled">
+
+              <mat-icon *ngIf="!prevBtnDisabled">chevron_left</mat-icon>
+              <app-loader *ngIf="prevBtnDisabled" width="24" height="24" [padding]="4" color="#fff" class="d-inline-flex"></app-loader>
+
+            </button>
+
+            <button mat-flat-button class="mw-auto mr-1" (click)="nextCalendar()" [disabled]="nextBtnDisabled">
+
+              <mat-icon *ngIf="!nextBtnDisabled">chevron_right</mat-icon>
+              <app-loader *ngIf="nextBtnDisabled" width="24" height="24" [padding]="4" color="#fff" class="d-inline-flex"></app-loader>
+
+            </button>
+
+          </div>
+
+          <div class="center d-flex justify-content-center col-8 p-0 text-center">
+            <span class="h1 font-weight-light">{{ data.title }}</span>
+          </div>
+
+          <div class="right empty col p-0">&nbsp;</div>
+        </div>
+
+      </div>
+
+      <app-flexybox-calendar [view]="calendarView" [currentDate]="currentDate" [data]="data"></app-flexybox-calendar>
+
+    </ng-container>
+
+  </ng-template>
+
+</div>

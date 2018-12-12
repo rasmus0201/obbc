@@ -1,0 +1,56 @@
+<app-loader *ngIf="!loaded && !apiError" [width]="250" [height]="250"></app-loader>
+
+<div class="container-fluid pt-3">
+
+  <ng-container *ngIf="apiError; then thenTemplate; else elseTemplate"></ng-container>
+
+  <ng-template #thenTemplate>
+    <mat-card class="alert alert-danger border-0" role="alert">
+      Fejl...
+    </mat-card>
+  </ng-template>
+
+  <ng-template #elseTemplate>
+
+    <ng-container *ngIf="loaded;">
+
+      <mat-card *ngIf="bookings.length === 0" class="alert alert-info border-0" role="alert">Du er ikke tilmeldt nogle
+        hold.</mat-card>
+
+      <div *ngIf="bookings.length > 0" class="col-lg-6 col-md-12">
+
+        <ng-container *ngFor="let day of bookings">
+          <mat-card class="mb-2">
+            <span class="text-capitalize">{{ format(day.date) }}</span>
+          </mat-card>
+
+          <mat-card *ngFor="let booking of day.bookings; last as isLast" class="ml-4 mb-2" [class.mb-4]="isLast">
+
+            <div class="row align-items-center">
+
+              <div class="col text-left">
+                {{ booking.time }}:&nbsp;{{ booking.name }}&nbsp;
+                <span *ngIf="booking.waitList != 0">(Venteliste: {{ booking.waitList }})</span>
+              </div>
+              <div class="col text-right">
+                <button mat-flat-button (click)="unsubscribe(booking)" [disabled]="booking.disabled === true">
+
+                  <span *ngIf="booking.disabled !== true">Frameld</span>
+                  <app-loader *ngIf="booking.disabled === true" width="24" height="24" [padding]="4" color="#fff" class="d-inline-flex"></app-loader>
+
+                </button>
+              </div>
+
+            </div>
+
+          </mat-card>
+        </ng-container>
+
+      </div>
+
+
+    </ng-container>
+
+  </ng-template>
+
+</div>

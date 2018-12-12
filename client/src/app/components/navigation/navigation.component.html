@@ -1,0 +1,48 @@
+<div class="nav-container" [class.nav-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="nav-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="nav-app-name">
+      <a (click)="home()">Holdtilmelding i OBBC</a>
+    </h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="nav-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'push'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <mat-nav-list>
+        <ng-container *ngIf="token; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-template #thenTemplate>
+          <a mat-list-item [routerLink]="['calendar']" routerLinkActive="active">
+            <mat-icon class="icon-flex mat-icon-16">calendar_today</mat-icon> Kalender
+          </a>
+          <a mat-list-item [routerLink]="['bookings']" routerLinkActive="active">
+            <mat-icon class="icon-flex mat-icon-16">assignment</mat-icon> Mine bookinger
+          </a>
+          <a mat-list-item (click)="logout()">
+            <mat-icon class="icon-flex mat-icon-16">power_settings_new</mat-icon> Log ud
+          </a>
+        </ng-template>
+
+        <ng-template #elseTemplate>
+          <a mat-list-item [routerLink]="['login']" routerLinkActive="active">
+            <mat-icon class="icon-flex mat-icon-16">exit_to_app</mat-icon> Log ind
+          </a>
+          <a mat-list-item href="http://fitness.flexybox.com/OBBC/Registration/" target="_blank">
+            <mat-icon class="icon-flex mat-icon-16">person_add</mat-icon> Opret konto
+          </a>
+        </ng-template>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <!-- Inject routes -->
+      <ng-content></ng-content>
+
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

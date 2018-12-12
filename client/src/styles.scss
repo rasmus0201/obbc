@@ -1,0 +1,97 @@
+/* You can add global styles to this file, and also import other style files */
+/*@import 'bootstrap/dist/css/bootstrap.css';*/
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/alert";
+
+/*@import '../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css';
+@import '../node_modules/bootstrap/dist/css/bootstrap-grid.min.css'; */
+
+/*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+/*@import '~@angular/material/prebuilt-themes/purple-green.css';*/
+/*@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';*/
+
+
+button,
+a,
+button:active,
+a:active,
+button:focus,
+a:focus {
+  outline: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  transition-delay: 84600s;
+  /* Hacky .. */
+}
+
+.mat-card-header .mat-card-header-text {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.mat-card-header .mat-card-title,
+.mat-card-subtitle {
+  font-size: 22px;
+}
+
+.mw-auto {
+  min-width: auto !important;
+}
+
+.text-wrap {
+  word-wrap: break-word;
+}
+
+.font-weight-500 {
+  font-weight: 500 !important;
+}
+
+.mat-faded {
+  opacity: 0.75;
+}
+
+.font-size-1 {
+  font-size: 0.25rem;
+}
+
+.font-size-2 {
+  font-size: 0.5rem;
+}
+
+.font-size-3 {
+  font-size: 0.75rem;
+}
+
+.font-size-4 {
+  font-size: 1rem;
+}
+
+.font-size-5 {
+  font-size: 1.25rem;
+}
+
+.font-size-6 {
+  font-size: 1.5rem;
+}

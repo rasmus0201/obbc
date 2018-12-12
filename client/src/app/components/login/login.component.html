@@ -1,0 +1,31 @@
+<div class="container">
+  <mat-card id="login" class="my-4">
+    <mat-card-header>
+      <mat-card-title>Log ind</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <mat-form-field class="col-12 mb-4">
+            <input matInput placeholder="Medlemsnr/Telefon/Email" formControlName="username">
+            <mat-error *ngIf="submitted && f.username.errors">
+              Brugernavn <strong>skal</strong> udfyldes
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-12 mb-4">
+            <input matInput type="password" placeholder="Adgangskode" formControlName="password">
+            <mat-error *ngIf="submitted && f.password.errors">
+              Adgangskode <strong>skal</strong> udfyldes
+            </mat-error>
+          </mat-form-field>
+          <div class="col-12">
+            <button mat-flat-button color="primary" type="submit" [disabled]="submitted">
+              <mat-icon>exit_to_app</mat-icon>
+              Log ind
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

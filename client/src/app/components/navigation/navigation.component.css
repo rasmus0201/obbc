@@ -1,0 +1,72 @@
+a {
+  cursor: pointer;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-is-mobile .nav-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+h1.nav-app-name {
+  margin-left: 8px;
+}
+
+.nav-app-name a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.nav-is-mobile .nav-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+.mat-drawer.mat-sidenav {
+  min-width: 200px;
+}
+
+/*
+.mat-drawer-content {
+  padding: 16px;
+}*/
+
+.nav-container {
+  height: 100%;
+}
+
+.mat-list-item.active {
+  background: rgba(0, 0, 0, .2);
+}
+
+
+.icon-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.mat-icon-16 {
+  font-size: 16px;
+}
+
+.mat-icon-18 {
+  font-size: 18px;
+}
+
+.mat-icon-24 {
+  font-size: 24px;
+}

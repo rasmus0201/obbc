@@ -1,0 +1,102 @@
+<div class="flexybox-calendar mb-4">
+  <section class="flex-row d-flex">
+
+    <div class="d-flex flex-row flex-wrap p-0">
+      <ng-container *ngFor="let day of data.events; last as isLast; first as isFirst;">
+
+        <ng-container *ngFor="let team of day;">
+
+          <ng-container *ngIf="team !== undefined">
+
+            <ng-container *ngIf="team.special === true; then thenTemplate; else elseTemplate"></ng-container>
+
+            <ng-template #thenTemplate>
+              <mat-card class="mat-card-flat col-2-of-14 p-3 mb-2 flex-shrink-1">
+
+                <span>{{ team.heading.day }}</span>
+                <p class="h1 font-weight-light">{{ team.heading.date }}</p>
+
+              </mat-card>
+            </ng-template>
+
+            <ng-template #elseTemplate>
+
+              <div class="col-2-of-14 mb-2 flex-shrink-1">
+
+
+                <mat-card
+                  class="mat-elevation-z1 d-inline-flex flex-column justify-content-between"
+                  [ngClass]="{
+                  'bg-success': team.isJoined,
+                  'bg-secondary': team.isFutureActivity,
+                  'text-white': team.isJoined || team.isFutureActivity,
+                  'mat-faded': team.disallowBooking}"
+                  [title]="team.disallowBooking == true ? 'Holdet kan ikke bookes' : ''"
+                >
+
+                  <mat-card-content>
+                    <p class="text-wrap font-size-4 font-weight-500">{{ team.name }}</p>
+
+                    <p *ngIf="(team.end - team.start) > 0">{{ team.start | date : 'HH:mm' }} - {{ team.end | date :
+                      'HH:mm' }}</p>
+                    <p *ngIf="(team.end - team.start) === 0">{{ team.start | date : 'HH:mm' }}</p>
+
+                    <div class="font-size-3">
+                      <span *ngIf="team.isCancelled" class="pb-1 d-block text-danger font-weight-bold font-italic">Holdet
+                    er aflyst</span>
+
+                      <ng-container *ngIf="!team.isFutureActivity; else elseTemplate">
+                        <span *ngIf="team.room" class="pb-1 d-block">Rum: {{ team.room }}</span>
+                        <span *ngIf="team.trainerName" class="pb-1 d-block">Instruktør: {{ team.trainerName }}</span>
+                        <span *ngIf="team.duration" class="pb-1 d-block">Varighed: {{ duration(team.duration) }}</span>
+
+                        <span *ngIf="team.isBooked" class="d-block">
+                          Tilmeldte: Der er {{ team.numJoined }} på
+                          venteliste.
+                        </span>
+                        <span *ngIf="!team.isBooked" class="d-block">Tilmeldte: {{ team.numJoined }}</span>
+
+                        <span *ngIf="team.isJoined" class="pt-1 d-block">Du er tilmeldt holdet</span>
+                      </ng-container>
+                      <ng-template #elseTemplate>
+                        <span class="d-block">{{ team.isFutureActivity }}</span>
+                      </ng-template>
+                    </div>
+                  </mat-card-content>
+
+                  <mat-card-actions
+                    *ngIf="(!team.isJoined && team.id && !team.disallowBooking) || unsubscribeAllowed(team)">
+                    <button *ngIf="!team.isJoined" mat-button (click)="subscribe(team)" [disabled]="team.isLoading === true">
+
+                      <ng-container *ngIf="team.isLoading !== true">
+                        Tilmeld
+                      </ng-container>
+
+                      <app-loader *ngIf="team.isLoading === true" [width]="24" [height]="24" [padding]="4"
+                                  class="d-inline-flex"></app-loader>
+
+                    </button>
+                  </mat-card-actions>
+
+                </mat-card>
+
+              </div>
+
+
+            </ng-template>
+
+          </ng-container>
+
+
+          <ng-container *ngIf="team === undefined">
+            <div class="col-2-of-14 col-empty flex-shrink-1">&nbsp;</div>
+          </ng-container>
+
+        </ng-container>
+
+
+      </ng-container>
+    </div>
+
+  </section>
+</div>
