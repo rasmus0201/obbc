@@ -33,13 +33,10 @@ export class FlexyboxCalendarComponent {
       // Do POST request.
       this.apiService.subscribe(team.id).subscribe(
         res => {
-          console.log(res);
           team.isLoading = false;
           team.isJoined = true;
         },
         err => {
-          console.log(err);
-
           team.isLoading = false;
         }
       );

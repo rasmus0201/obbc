@@ -54,8 +54,6 @@ export class BookingsComponent implements OnInit {
         this.bookings = res['data'];
         this.snackBar.open(res['msg'], 'Luk', this.snackBarSettings);
         this.loaded = true;
-
-        console.log(res);
       },
       err => {
         this.apiError = true;
@@ -74,17 +72,10 @@ export class BookingsComponent implements OnInit {
     // for some reason this call always return 404 - bug in API
     this.apiService.leave(booking.id).subscribe(
       res => {
-        // console.log(res);
-
         this.remove(booking.id);
         this.snackBar.open('Du er blevet afmeldt holdet', 'Luk', this.snackBarSettings);
       },
       err => {
-        // console.log(err);
-
-        // this.snackBar.open('Fejl: ' + err.status + ' - ' + err.statusText, 'Luk', this.snackBarSettings);
-
-
         this.remove(booking.id);
         this.snackBar.open('Du er blevet afmeldt holdet', 'Luk', this.snackBarSettings);
       },

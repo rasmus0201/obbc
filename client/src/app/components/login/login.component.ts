@@ -70,15 +70,16 @@ export class LoginComponent implements OnInit {
 
         let token = res['data']['credentials'];
 
-        //Store cookie for 1 year
+        // Store cookie for 1 year
         const expDate = new Date();
         expDate.setFullYear(expDate.getFullYear() + 1);
 
-        //Store in cookies instead
-        //this.cookieService.set('userToken', encodeURI(token), expDate, '/', environment.productionUrl, environment.sslEnabled, 'Strict');
-        this.cookieService.set('userToken', encodeURIComponent(token), expDate, '/', null, environment.sslEnabled, 'Strict');
+        // Store in cookies instead
 
-        console.log('Set cookie');
+        // Setting url doesn't work properly. Maybe something
+        // to do with ports.
+        // this.cookieService.set('userToken', encodeURI(token), expDate, '/', environment.productionUrl, environment.sslEnabled, 'Strict');
+        this.cookieService.set('userToken', encodeURIComponent(token), expDate, '/', null, environment.sslEnabled, 'Strict');
 
         this.router.navigate(['/calendar']);
       } else {
