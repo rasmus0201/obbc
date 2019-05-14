@@ -37,3 +37,11 @@ $app->get('/privatlivspolitik', $GLOBALS['controllers']['PageController'] . ':pr
 $app->group('/obbc', function() use ($app) {
     //OBBC undersider
 });
+
+$app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+        ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+        ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+        ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});

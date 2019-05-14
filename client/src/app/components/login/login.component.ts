@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if (this.loginForm.invalid) {
+      this.submitted = false;
       return;
     }
 
@@ -84,11 +85,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/calendar']);
       } else {
         this.snackBar.open(res['msg'] || 'Fejl', 'Luk', this.snackBarSettings);
-        this.submitted = true;
+        this.submitted = false;
       }
     }, (res) => {
       this.snackBar.open(res.error.msg || 'Fejl', 'Luk', this.snackBarSettings);
-      this.submitted = true;
+      this.submitted = false;
     });
   }
 }
