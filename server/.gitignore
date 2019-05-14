@@ -3,4 +3,3 @@ vendor/*
 .idea/*
 .env
 *.pem
-todo.txt
