@@ -1,3 +1,5 @@
+### This repo is archived. It's successor is [rasmus0201/flexyfitness](https://github.com/rasmus0201/flexyfitness)
+
 ## Prerequisites
 To run this project you must have
 
